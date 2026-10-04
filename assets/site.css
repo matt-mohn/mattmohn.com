@@ -1,0 +1,86 @@
+  :root {
+    --ink: #2b2d31;
+    --muted: #7d8189;
+    --line: #2b2d31;
+    --mist: #f6f7f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px 22vh;
+    color: var(--ink);
+    font-family: "Crimson Pro", Georgia, serif;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 35%, #ffffff 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 15% 85%, #eceef1 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 85% 80%, #eef0f2 0%, transparent 70%),
+      var(--mist);
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    animation: fade 1.6s ease-out both;
+  }
+  h1 {
+    font-weight: 300;
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  h1 { text-align: right; }
+  .rule {
+    align-self: stretch;
+    width: 1px;
+    background: var(--ink); opacity: 0.25;
+  }
+  nav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  nav a, .projects a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, color .3s;
+  }
+  nav a:hover, nav a:focus-visible, .projects a:hover, .projects a:focus-visible { border-color: currentColor; color: #000; outline: none; }
+  .skyline {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: auto;
+    max-height: 32vh;
+    pointer-events: none;
+    opacity: 0.16;
+    z-index: -1;
+  }
+  .skyline * { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  @media (max-width: 520px) {
+    .projects { align-items: center; text-align: center; }
+    main { flex-direction: column; gap: 1.4rem; }
+    h1 { text-align: center; }
+    .rule { align-self: center; width: 160px; height: 1px; }
+    nav { align-items: center; }
+  }
+  .scene { opacity: 0; animation: scene 10s ease-in-out infinite; }
+  .scene:nth-of-type(2) { animation-delay: -5s; }
+  @keyframes scene { 0%, 30% { opacity: 1; } 50%, 80% { opacity: 0; } 100% { opacity: 1; } }
+  #wisps { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -2; }
+  .back {
+    position: fixed; top: 20px; left: 24px;
+    color: var(--muted); text-decoration: none; font-size: 1rem; letter-spacing: 0.02em;
+    transition: color .3s;
+  }
+  .back:hover, .back:focus-visible { color: var(--ink); outline: none; }
+  .projects { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+  .projects a { font-size: 1.15rem; }
+  .projects .desc { display: block; color: var(--muted); font-size: 0.95rem; font-style: italic; margin-top: 1px; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { main, .scene { animation: none; } .scene:first-of-type { opacity: 1; } }
